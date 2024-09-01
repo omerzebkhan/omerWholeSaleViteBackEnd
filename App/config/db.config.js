@@ -33,18 +33,18 @@ module.exports = {
 
   //////////// Remote heruko DB omerwholesale   port 5342
 
-  // HOST:"ec2-3-218-243-246.compute-1.amazonaws.com",
-  // USER:"nbzlndivtkcpgr",
-  // PASSWORD:"acfda065e9f967309a7ab6fe73567cd3f94b90d86d859af08f06527097dce3fb",
-  // DB:"d72hlopofnomoi",
-  // dialect:"postgres",
+  HOST:"c6m2hub4lh1mqp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
+  USER:"u4mip97g5gvltk",
+  PASSWORD:"p51209ae123e7589b00feca34c48b5fa4b2331c62e59a01ecf0a9109110448c7d",
+  DB:"dd9ng5h9g8dtjn",
+  dialect:"postgres",
 
   //////////// Remote heruko DB N&M  port 5342
-  HOST: "cds8t1hu28fsv2.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
-  USER: "u7putpck0qs4r6",
-  PASSWORD: "p4a8f501e897895fa8b8bf3a80913615fc9594c65d63e9adb88ee8ab726553d55",
-  DB: "dccuh93ujthlne",
-  dialect: "postgres",
+  // HOST: "cds8t1hu28fsv2.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
+  // USER: "u7putpck0qs4r6",
+  // PASSWORD: "p4a8f501e897895fa8b8bf3a80913615fc9594c65d63e9adb88ee8ab726553d55",
+  // DB: "dccuh93ujthlne",
+  // dialect: "postgres",
 
 ////////////////Amazone AS3
 // HOST : "localhost",
