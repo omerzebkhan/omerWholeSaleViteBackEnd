@@ -305,6 +305,48 @@ from "saleDetails",(select * from "purchaseDetails",(
   and "saleDetails"."saleInvoiceId"=29
   
   
+----------------------------------Sales Report by customer 
+select "customerId",users.name,sum(invoicevalue) from sales,users
+where sales."customerId" = users.id
+group by "customerId",users.name
+order by sum(invoicevalue) desc
+
+
+---%age
+WITH CustomerTotals AS (
+    SELECT 
+        sales."customerId",
+        users.name,
+        SUM(invoicevalue) AS total_invoice_value
+    FROM 
+        sales
+    JOIN 
+        users ON sales."customerId" = users.id
+    WHERE 
+        sales.invoice_date BETWEEN '2023-01-01' AND '2023-12-31'  -- Date condition
+    GROUP BY 
+        sales."customerId", users.name
+),
+TotalValue AS (
+    SELECT 
+        SUM(total_invoice_value) AS grand_total
+    FROM 
+        CustomerTotals
+)
+
+SELECT 
+    ct."customerId",
+    ct.name,
+    ct.total_invoice_value,
+    (ct.total_invoice_value / tv.grand_total) * 100 AS percentage
+FROM 
+    CustomerTotals ct,
+    TotalValue tv
+ORDER BY 
+    ct.total_invoice_value DESC;
+	
+	
+  
   
 ------------------------------lower limit report------------------------------
 select a.id,a.name,a.quantity,a.lowerlimit,a.higerlimit from items a,items b 
@@ -333,6 +375,34 @@ group by "itemId"
 ) as p on items.id = p."itemId"
 order by s.totalsale asc;
 
+--------------------------Report inventory Age of the items
+select items.name,items.quantity,items.quantity*items.avrageamount,pd."createdAt",CURRENT_DATE-pd."createdAt" as INVAGE 
+from "purchaseDetails" pd,items
+where pd."itemId"=items.id and pd."createdAt" = (select max("createdAt") from "purchaseDetails" where "itemId" =pd."itemId")
+order by CURRENT_DATE-pd."createdAt"
+
+
+
+-------------------------Report Customer sale trend--------------------------
+--Sale report customer wise
+
+-- Item profit %age 
+WITH profit_summary AS (
+    SELECT 
+        name,
+        SUM("saleDetails".quantity * (price - cost)) AS total_profit
+    FROM 
+        "saleDetails",items where items.id = "saleDetails"."itemId"
+    GROUP BY 
+        "name"
+)
+SELECT 
+    name,
+    total_profit,
+    (total_profit / SUM(total_profit) OVER ()) * 100 AS percentage_profit
+FROM 
+    profit_summary
+    order by percentage_profit desc ;
 
 ---------------------------------------------------plsql----------------------------------------------------
 

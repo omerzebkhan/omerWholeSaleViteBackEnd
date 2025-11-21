@@ -1,77 +1,113 @@
 require('dotenv').config();
-var Host = "";
-var User = "";
-var Pass = "";
-var DB = "";
-var Dialet = "";
+// var Host = "";
+// var User = "";
+// var Pass = "";
+// var DB = "";
+// var Dialet = "";
 
-if (process.env.REACT_APP_LOCALSERVER==="True"){
-  Host = "localhost";
-  User = "postgres";
-  Pass = "omer";
-  Db = "testdb";
-  Dialet = "postgres"; 
-}
-else {
-  //Host = "ec2-67-202-21-6.compute-1.amazonaws.com";
-  // User = "axenkmmmnrffnc";
-  // Pass = "d6549961c432a46605c023c80903b7ccac70040091059484708dbe29ea1534ba";
-  // Db = "da9hhbf5iglnut";
-  // Dialet = "postgres"; 
+// if (process.env.REACT_APP_LOCALSERVER==="True"){
+//   Host = "localhost";
+//   User = "postgres";
+//   Pass = "omer";
+//   Db = "testdb";
+//   Dialet = "postgres"; 
+// }
+// else {
+//   //Host = "ec2-67-202-21-6.compute-1.amazonaws.com";
+//   // User = "axenkmmmnrffnc";
+//   // Pass = "d6549961c432a46605c023c80903b7ccac70040091059484708dbe29ea1534ba";
+//   // Db = "da9hhbf5iglnut";
+//   // Dialet = "postgres"; 
 
-  // Host = "ec2-52-3-60-53.compute-1.amazonaws.com";
-  // User = "vhfrkametazjdk";
-  // Pass = "772da0e515b0829fc25faca16d0bc17ee91095e793e57ffba930a797ed54fb8b";
-  // Db = "d40cas9scuggao";
-  // Dialet = "postgres"; 
+//   // Host = "ec2-52-3-60-53.compute-1.amazonaws.com";
+//   // User = "vhfrkametazjdk";
+//   // Pass = "772da0e515b0829fc25faca16d0bc17ee91095e793e57ffba930a797ed54fb8b";
+//   // Db = "d40cas9scuggao";
+//   // Dialet = "postgres"; 
 
-}
-;
+// }
+// ;
 
+
+// // module.exports = {
+
+// //   //////////// Remote heruko DB omerwholesale   port 5342
+
+// //   // HOST:"c6m2hub4lh1mqp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
+// //   // USER:"u4mip97g5gvltk",
+// //   // PASSWORD:"p51209ae123e7589b00feca34c48b5fa4b2331c62e59a01ecf0a9109110448c7d",
+// //   // DB:"dd9ng5h9g8dtjn",
+// //   // dialect:"postgres",
+
+// //   //////////// Remote heruko DB N&M  port 5342
+// //   // HOST: "cds8t1hu28fsv2.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
+// //   // USER: "u7putpck0qs4r6",
+// //   // PASSWORD: "p4a8f501e897895fa8b8bf3a80913615fc9594c65d63e9adb88ee8ab726553d55",
+// //   // DB: "dccuh93ujthlne",
+// //   // dialect: "postgres",
+
+// // ////////////////Amazone AS3
+// // // HOST : "localhost",
+// // // USER : "postgres",
+// // // PASSWORD : "Incredible!123",
+// // // DB : "pakBusinessDB",
+// // // dialect : "postgres",
+
+// // ////////////////DB for render hosted omerwhole
+// // // HOST : "localhost",
+// // // USER : "postgres",
+// // // PASSWORD : "Incredible!123",
+// // // DB : "pakBusinessDB",
+// // // dialect : "postgres",
+
+
+
+// //   ////////////////local DB  N&A Traders
+// //   HOST : "localhost",
+// //   USER : "postgres",
+// //   PASSWORD : "omer",
+// //   DB : "pakBusinessDB",
+// //   dialect : "postgres",
+  
+// //   ////////////////local DB Test
+// //   // HOST : "localhost",
+// //   // USER : "postgres",
+// //   // PASSWORD : "omer",
+// //   // DB : "testdb",
+// //   // dialect : "postgres",
+
+// //   pool: {
+// //     max: 5, //max: maximum number of connection in pool
+// //     min: 0, //min: minimum number of connection in pool
+// //     acquire: 30000, //idle: maximum time, in milliseconds, that a connection can be idle before being released
+// //     idle: 10000 //acquire: maximum time, in milliseconds, that pool will try to get connection before throwing error
+// //   }
+// // };
+
+//require("dotenv").config();
+require("dotenv").config();
+
+const isLocal = process.env.DATABASE_URL.includes("localhost");
 
 module.exports = {
+  URL: process.env.DATABASE_URL,
+  dialect: "postgres",
 
-  //////////// Remote heruko DB omerwholesale   port 5342
-
-  HOST:"c6m2hub4lh1mqp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
-  USER:"u4mip97g5gvltk",
-  PASSWORD:"p51209ae123e7589b00feca34c48b5fa4b2331c62e59a01ecf0a9109110448c7d",
-  DB:"dd9ng5h9g8dtjn",
-  dialect:"postgres",
-
-  //////////// Remote heruko DB N&M  port 5342
-  // HOST: "cds8t1hu28fsv2.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
-  // USER: "u7putpck0qs4r6",
-  // PASSWORD: "p4a8f501e897895fa8b8bf3a80913615fc9594c65d63e9adb88ee8ab726553d55",
-  // DB: "dccuh93ujthlne",
-  // dialect: "postgres",
-
-////////////////Amazone AS3
-// HOST : "localhost",
-// USER : "postgres",
-// PASSWORD : "Incredible!123",
-// DB : "pakBusinessDB",
-// dialect : "postgres",
-
-
-  ////////////////local DB  N&A Traders
-  // HOST : "localhost",
-  // USER : "postgres",
-  // PASSWORD : "omer",
-  // DB : "pakBusinessDB",
-  // dialect : "postgres",
-  
-  ////////////////local DB Test
-  // HOST : "localhost",
-  // USER : "postgres",
-  // PASSWORD : "omer",
-  // DB : "testdb",
-  // dialect : "postgres",
+  // Enable SSL ONLY when using Render/Heroku
+  dialectOptions: isLocal
+    ? {}
+    : {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      },
 
   pool: {
-    max: 5, //max: maximum number of connection in pool
-    min: 0, //min: minimum number of connection in pool
-    acquire: 30000, //idle: maximum time, in milliseconds, that a connection can be idle before being released
-    idle: 10000 //acquire: maximum time, in milliseconds, that pool will try to get connection before throwing error
-  }
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 };
+

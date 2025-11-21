@@ -46,12 +46,10 @@ db.sequelize.sync();
 // });
 
 var corsOptions = {
- origin: ["http://localhost:90","http://localhost:3000","http://localhost:8081","https://protected-gorge-40768.herokuapp.com","https://omerwholesale-dbe41ec6a9be.herokuapp.com","http://44.210.87.201:8081"]
+ origin: ["http://localhost:5173","http://localhost:90","http://localhost:3000","http://localhost:8081","https://protected-gorge-40768.herokuapp.com","https://omerwholesale-dbe41ec6a9be.herokuapp.com","http://44.210.87.201:8081"]
  //origin: "https://protected-gorge-40768.herokuapp.com"
 };
 app.use(cors(corsOptions));
- 
-// // parse requests of content-type - application/json
 app.use(bodyParser.json());
 //app.use(express.json());
 
@@ -81,6 +79,7 @@ app.get("/", (req, res) => {
 
 app.use((req, res, next) => { 
   console.log("App request");
+  console.log(req.method,req.url);
  // console.log(req.method, req.url,req.body.saleInvoiceId);
    next() })
 

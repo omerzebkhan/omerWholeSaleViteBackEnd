@@ -44,6 +44,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  console.log(req.body)
   User.findOne({
     where: {
       username: req.body.username
@@ -119,11 +120,13 @@ exports.signin = (req, res) => {
             
             })
             .catch(err => {
+              console.log(`No Role assigned to the user error is =${err.message}`)
               res.status(500).send({ message: `No Role assigned to the user error is =${err.message}` });
             });
             ;
         })
         .catch(err => {
+          console.log(`error is =${err.message}`)
           res.status(500).send({ message: `error is =${err.message}` });
         });
     };
