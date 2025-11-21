@@ -1,0 +1,75 @@
+# ----------------------------------------
+# Node.js / Express / Backend
+# ----------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log
+package-lock.json
+.env
+.env.local
+.env.*.local
+
+# Ignore runtime files
+*.log
+logs/
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Ignore build output
+dist/
+build/
+
+# Ignore coverage tools
+coverage/
+.nyc_output/
+
+# ----------------------------------------
+# Vite Frontend
+# ----------------------------------------
+# Local environment files
+.env.production.local
+.env.development.local
+
+# Vite cache
+.vite/
+.cache/
+
+# Build output folder
+dist/
+
+# ----------------------------------------
+# OS generated files
+# ----------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------
+# Editor / IDE files
+# ----------------------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ----------------------------------------
+# TypeScript
+# ----------------------------------------
+*.tsbuildinfo
+
+# ----------------------------------------
+# Other tools
+# ----------------------------------------
+.cache/
+.tmp/
+.temp/
+
+# ----------------------------------------
+# Render related
+# ----------------------------------------
+# Nothing special required — handled via env
