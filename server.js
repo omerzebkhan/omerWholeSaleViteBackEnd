@@ -54,6 +54,16 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 //app.use(express.json());
 
+//////////////////to bypass eval error in the browser
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'"
+  );
+  next();
+});
+////////////////////////////
+
 // // parse requests of content-type - application/x-www-form-urlencoded
  app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(express.urlencoded({ extended: true }));
